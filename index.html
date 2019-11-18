@@ -35,9 +35,10 @@
   <link rel="stylesheet" href="https://unpkg.com/mapbox-gl/dist/mapbox-gl.css"/>
   <script src="https://unpkg.com/mapbox-gl/dist/mapbox-gl.js"></script>
   <!-- Load Esri Leaflet from CDN -->
-  <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
-    integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
-    crossorigin=""></script>
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.3.2/dist/esri-leaflet.js"
+  integrity="sha512-6LVib9wGnqVKIClCduEwsCub7iauLXpwrd5njR2J507m3A2a4HXJDLMiSZzjcksag3UluIfuW1KzuWVI5n/cuQ=="
+  crossorigin=""></script>
   <!-- Load esri leaflet vector -->
   <script src="https://unpkg.com/esri-leaflet-vector/dist/esri-leaflet-vector-debug.js"></script>
 <!-- End code snippet -->
@@ -57,10 +58,10 @@
 
 // Add Layer control. Source: https://leafletjs.com/examples/layers-control/
 // Create Layer group for the bike and ped shapefiles
-       var layerGroup = L.layerGroup([bikeCounts, pedCounts]);
+       // var layerGroup = L.layerGroup([bikeCounts, pedCounts]);
                 
 // Create objects for layer control to reference
-        var overlayMaps = {"layerGroup": layerGroup};
+        var overlayMaps = {"Bike Counts": bikeCounts, "Pedestrian Counts": pedCounts};
         
 // Create layer control
         L.control.layers(null, overlayMaps).addTo(map);
