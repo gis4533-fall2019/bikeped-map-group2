@@ -54,6 +54,8 @@
             var bikeCounts = L.esri.Vector.layer('265c2cb0ee5f4616b34b1d28845e4692').addTo(map);
         // Add Pedestrain count vector tile layer
             var pedCounts = L.esri.Vector.layer('012b4ed44c1c4cbd89d79a8bab2efee4').addTo(map);
+// Create Layer group for the bike and ped shapefiles
+        var layers = L.layergroup([bikeCounts, pedCounts]);
     </script>
     
 </body>
