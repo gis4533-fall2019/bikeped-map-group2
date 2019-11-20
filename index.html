@@ -5,6 +5,8 @@
 	<title>ARDC Map</title>
    <!-- External Stylesheets -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <!-- Stylesheet for legend https://github.com/consbio/Leaflet.HtmlLegend#install-->
+    <link rel="stylesheet" href="L.Control.HtmlLegend.css" />
         <style>
         /* source for making map full screen: http://www.d3noob.org/2014/02/make-your-leafletjs-map-full-screen.html */
             body {
@@ -71,6 +73,8 @@
     <script 
         src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js">>
     </script>
+<!-- add html legend plugin https://github.com/consbio/Leaflet.HtmlLegend#install-->
+    <script src="L.Control.HtmlLegend.min.js"></script>
 
 <!-- Add plugins to allow esri layers to be added to map -->
 <!-- Following code snippet taken from https://github.com/gis4533-fall2019/webdev-unit/blob/master/webdev5-examples/vector-tiles.html-->
@@ -131,7 +135,29 @@
         
 // Create layer control
         L.control.layers(null, overlayMaps).addTo(map);
-
+    
+// Create legend - code adapted from https://github.com/consbio/Leaflet.HtmlLegend#install
+  /*  var htmlLegend = L.control.htmllegend({
+        position: "bottomright",
+        legends: [{
+            name: 'Bike Counts',
+            layer: bikeCounts,
+            elements: [{
+                label: 'Rectangle',
+                htmal:'',
+                style: {
+                    'background-color': 'red',
+                    'width': '10px',
+                    'height': '10px',
+                }}]}]addTo.(map);
+htmlLegend.addLegend({
+        name: 'Layer name',
+        layer: layerInstance,
+        elements: [{
+            html: '<div>Legend description</div>'
+        }]
+    })
+*/
     </script>
     
     
