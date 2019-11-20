@@ -15,7 +15,7 @@
             height: 100%;
             width: 100%;
         }
-        
+     
             #map {
                 top: 60px;
                 }
@@ -61,6 +61,29 @@
 <!-- Our web map and content will go here -->
         <div id="map"></div>
     
+=======
+<!-- Our web map and content will go here -->
+        <div 
+            id="map">
+        </div>
+    
+<!-- Add the Leaflet JavaScript library -->
+    <script 
+        src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js">>
+    </script>
+
+<!-- Add plugins to allow esri layers to be added to map -->
+<!-- Following code snippet taken from https://github.com/gis4533-fall2019/webdev-unit/blob/master/webdev5-examples/vector-tiles.html-->
+      <!-- Load Mapbox GL -->
+  <link rel="stylesheet" href="https://unpkg.com/mapbox-gl/dist/mapbox-gl.css"/>
+  <script src="https://unpkg.com/mapbox-gl/dist/mapbox-gl.js"></script>
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
+    integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
+    crossorigin=""></script>
+  <!-- Load esri leaflet vector -->
+  <script src="https://unpkg.com/esri-leaflet-vector/dist/esri-leaflet-vector-debug.js"></script>
+<!-- End code snippet -->
     
 <!-- Add the Leaflet JavaScript library -->
         <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
@@ -85,7 +108,10 @@
 
 <script>
 // Create variable to hold map element, give initial settings to map
+
          var map = L.map('map',{ center: [46.76630, -92.10584], zoom: 12});
+
+        var map = L.map('map',{ center: [46.76630, -92.10584], zoom: 12});
         
 // Add OpenStreetMap tile layer to map element
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
@@ -95,7 +121,7 @@
             var bikeCounts = L.esri.Vector.layer('265c2cb0ee5f4616b34b1d28845e4692').addTo(map);
         // Add Pedestrain count vector tile layer
             var pedCounts = L.esri.Vector.layer('012b4ed44c1c4cbd89d79a8bab2efee4').addTo(map);
-        
+
     </script>
     
 </body>
