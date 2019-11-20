@@ -2,47 +2,100 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Leaflet Map</title>
+	<title>ARDC Map</title>
    <!-- External Stylesheets -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+        <style>
+        /* source for making map full screen: http://www.d3noob.org/2014/02/make-your-leafletjs-map-full-screen.html */
+            body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+        
+            #map {
+                top: 60px;
+                }
+
+/*            Add Header Styling*/
+            
+            #header {
+            top: 0;
+            width: 100%;
+            z-index: 999999;
+            position: fixed;
+            height: 60px;
+/*            white text*/
+            color: lightgray; 
+/*            purple background*/
+            background-color: purple;
+            padding-left: 12px;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            }
+            
+            #header * {
+                display: inline-block;
+                margin-right: 20px;
+                margin-top: 10px;
+            }
+            .right {
+                float: right;
+            }
+            
+            a{
+                color: aqua;
+            }
+           
+    </style>
 </head>
 <body>
     
+<!--    <header id="header">-->
+        <h1>Arrowhead Regional Development Commision Bi-annual Bicycle and Pedistrian Counts in Duluth-Superior</h1>
+    <h3><a href="http://ardc.org/wp-content/uploads/2016/09/AnnualReportTemplate_07_2016_FINALDRAFTrh.pdf" target="_blank">2015 Annual Report Here</a></h3>
+    
 <!-- Our web map and content will go here -->
-        <div 
-            id="map" style="width: 705px; height: 375px">
-        </div>
+        <div id="map"></div>
+    
     
 <!-- Add the Leaflet JavaScript library -->
-    <script 
-        src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js">>
-    </script>
-    
-<!-- Add Leaflet Omnivore plugin to code -->
-    <script
-        src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'>
-    </script>
-    
-    <script>
+        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+  
+            
+<!-- Add plugins to allow esri layers to be added to map -->
+<!-- Following code snippet taken from https://github.com/gis4533-fall2019/webdev-unit/blob/master/webdev5-examples/vector-tiles.html-->
+        
+      <!-- Load Mapbox GL -->
+  <link rel="stylesheet" href="https://unpkg.com/mapbox-gl/dist/mapbox-gl.css"/>
+        <script src="https://unpkg.com/mapbox-gl/dist/mapbox-gl.js"></script>
+        
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
+    integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
+          crossorigin=""></script>
+        
+  <!-- Load esri leaflet vector -->
+        <script src="https://unpkg.com/esri-leaflet-vector/dist/esri-leaflet-vector-debug.js"></script>
+      
+<!-- End code snippet --> 
+
+<script>
 // Create variable to hold map element, give initial settings to map
-        var map = L.map('map',{ center: [42.362432, -71.086086], zoom: 14});
+         var map = L.map('map',{ center: [46.76630, -92.10584], zoom: 12});
         
 // Add OpenStreetMap tile layer to map element
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
-   
-// Create custom airplane marker for airports.csv
-       /* var myAirplane = L.icon({
-            iconUrl:'https://raw.githubusercontent.com/gis4533-fall2019/webdev-unit/master/airport.png',
-            iconSize:  [40, 40], // size of the icon
-        }) */
 
-// Create custom layer as template for airports layer
-// Code adapted from https://kristofj-umd.github.io/webdev-f19/assignments/webdev2.html
-       // var customLayer = L.geoJson(null, {pointToLayer: function(feature,latlng){return L.marker(latlng,{icon: myAirplane});}});
+// Add Esri Vector Tile Data
+        // Add Bike count vector tile layer
+            var bikeCounts = L.esri.Vector.layer('265c2cb0ee5f4616b34b1d28845e4692').addTo(map);
+        // Add Pedestrain count vector tile layer
+            var pedCounts = L.esri.Vector.layer('012b4ed44c1c4cbd89d79a8bab2efee4').addTo(map);
         
-// Create airports feature from airports csv
-        // var myAirportsCsv = omnivore.csv('https://raw.githubusercontent.com/gis4533-fall2019/webdev-unit/master/airports.csv', null, customLayer).addTo(map);
-
     </script>
     
 </body>
